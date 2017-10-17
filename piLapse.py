@@ -1,6 +1,16 @@
 import RPi.GPIO as GPIO
-import time
+from time import sleep
 from subprocess import call
+
+inProgress = True
+
+totalPhotos = input("Enter the number of photos: ")
+shutter = input("Shutter speed of camera: ")
+interval = input("Interval between photos: ")
+steps = input("Steps between each photo: ")
+direction = input("Move left or right (1 for left): ")
+
+photosTaken = 0
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -40,27 +50,39 @@ def moveStepper(coilSequence):
 def moveForward(steps):
     for i in range(0, steps):
         moveStepper(Seq[0])
-        time.sleep(0.009)
+        sleep(0.009)
         moveStepper(Seq[1])
-        time.sleep(0.009)
+        sleep(0.009)
         moveStepper(Seq[2])
-        time.sleep(0.009)
+        sleep(0.009)
         moveStepper(Seq[3])
-        time.sleep(0.009)
+        sleep(0.009)
 
 def moveBackwards(steps):
     for i in range(0, steps):
         moveStepper(Seq[3])
-        time.sleep(0.009)
+        sleep(0.009)
         moveStepper(Seq[2])
-        time.sleep(0.009)
+        sleep(0.009)
         moveStepper(Seq[1])
-        time.sleep(0.009)
+        sleep(0.009)
         moveStepper(Seq[0])
-        time.sleep(0.009)
+        sleep(0.009)
 
-while True:
-  steps = raw_input("Steps forward: ")
-  moveForward(int(steps))
-  steps = raw_input("Steps backwards:  ")
-  moveBackwards(int(steps))
+
+while (inProgress):
+
+    if (photosTaken < totalPhotos):
+        call(["gphoto2", "--trigger-capture"])
+        print("Current photo: %s, Total Photos: %s" % (totalPhotos, photosTaken))
+        sleep(int(shutter))
+        if (int(direction) == '1'):
+            moveForward(int(steps))
+        else:
+            moveBackwards(int(steps))
+        sleep(int(interval))
+        photosTaken += 1
+
+    else:
+        inProgress = False
+        print("Sequence finished")
