@@ -70,18 +70,22 @@ def moveBackwards(steps):
         sleep(0.009)
 
 
+def takePhoto(photosTaken):
+    call(["gphoto2", "--trigger-capture"])
+    print("Current photo: %s, Total Photos: %s" % (totalPhotos, photosTaken))
+    sleep(int(shutter))
+    if (int(direction) == '1'):
+        moveForward(int(steps))
+    else:
+        moveBackwards(int(steps))
+    sleep(int(interval))
+    photosTaken += 1
+
+
 while (inProgress):
 
     if (photosTaken < totalPhotos):
-        call(["gphoto2", "--trigger-capture"])
-        print("Current photo: %s, Total Photos: %s" % (totalPhotos, photosTaken))
-        sleep(int(shutter))
-        if (int(direction) == '1'):
-            moveForward(int(steps))
-        else:
-            moveBackwards(int(steps))
-        sleep(int(interval))
-        photosTaken += 1
+        takePhoto(photosTaken)
 
     else:
         inProgress = False
