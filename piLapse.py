@@ -21,11 +21,11 @@ coil_A_2_pin = 17
 coil_B_1_pin = 23
 coil_B_2_pin = 24
 
-Seq[0] = []
-Seq[0] = [1, 0, 1, 0]
-Seq[1] = [0, 1, 1, 0]
-Seq[2] = [0, 1, 0, 1]
-Seq[3] = [1, 0, 0, 1]
+
+coilSeq1 = [1, 0, 1, 0]
+coilSeq2 = [0, 1, 1, 0]
+coilSeq3 = [0, 1, 0, 1]
+coilSeq4 = [1, 0, 0, 1]
 
 GPIO.setup(enable_pin, GPIO.OUT)
 GPIO.setup(coil_A_1_pin, GPIO.OUT)
@@ -48,30 +48,30 @@ def moveStepper(coilSequence):
 
 def moveForward(steps):
     for i in range(0, steps):
-        moveStepper(Seq[0])
+        moveStepper(coilSeq1)
         sleep(0.009)
-        moveStepper(Seq[1])
+        moveStepper(coilSeq2)
         sleep(0.009)
-        moveStepper(Seq[2])
+        moveStepper(coilSeq3)
         sleep(0.009)
-        moveStepper(Seq[3])
+        moveStepper(coilSeq4)
         sleep(0.009)
 
 def moveBackwards(steps):
     for i in range(0, steps):
-        moveStepper(Seq[3])
+        moveStepper(coilSeq4)
         sleep(0.009)
-        moveStepper(Seq[2])
+        moveStepper(coilSeq3)
         sleep(0.009)
-        moveStepper(Seq[1])
+        moveStepper(coilSeq2)
         sleep(0.009)
-        moveStepper(Seq[0])
+        moveStepper(coilSeq1)
         sleep(0.009)
 
 
 
 def takePhoto(photosTaken):
-    #call(["gphoto2", "--trigger-capture"])
+    call(["gphoto2", "--trigger-capture"])
     print("Current photo: %s, Total Photos: %s" % (totalPhotos, photosTaken))
     sleep(int(shutter))
     if (int(direction) == '1'):
