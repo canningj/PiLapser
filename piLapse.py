@@ -21,8 +21,7 @@ coil_A_2_pin = 17
 coil_B_1_pin = 23
 coil_B_2_pin = 24
 
-StepCount = 4
-Seq = range(0, StepCount)
+Seq[0] = []
 Seq[0] = [1, 0, 1, 0]
 Seq[1] = [0, 1, 1, 0]
 Seq[2] = [0, 1, 0, 1]
@@ -71,7 +70,7 @@ def moveBackwards(steps):
 
 
 def takePhoto(photosTaken):
-    call(["gphoto2", "--trigger-capture"])
+    #call(["gphoto2", "--trigger-capture"])
     print("Current photo: %s, Total Photos: %s" % (totalPhotos, photosTaken))
     sleep(int(shutter))
     if (int(direction) == '1'):
