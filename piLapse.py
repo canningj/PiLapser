@@ -70,7 +70,7 @@ def moveBackwards(steps):
 
 
 
-def takePhoto(photosTaken):
+def takePhoto():
     call(["gphoto2", "--trigger-capture"])
     print("Current photo: %s, Total Photos: %s" % (totalPhotos, photosTaken))
     sleep(int(shutter))
@@ -79,14 +79,14 @@ def takePhoto(photosTaken):
     else:
         moveBackwards(int(steps))
     sleep(int(interval))
-    photosTaken += 1
 
 
 
 while (inProgress):
 
     if (photosTaken < int(totalPhotos)):
-        takePhoto(photosTaken)
+        takePhoto()
+        photosTaken += 1
 
     else:
         inProgress = False
