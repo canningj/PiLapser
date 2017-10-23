@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from .piLapse import moveForward
+import RPi.GPIO as GPIO
+from time import sleep
+from subprocess import call
 
 from .forms import totalImages
 
