@@ -1,6 +1,10 @@
 <form method="POST" action="">
     {% csrf_token %}
     {{ form }}
+    {{ stepCount.name.label_tag }}
+    {{ stepCount.name }}
+
+    <!--
     <label for="totalImages"># of photos: </label>
     <input id="totalImages" type="integer" name="totalImages" value="{{ 0 }}">
     <label for="shutterSpeed">Shutter speed of the camera: </label>
@@ -12,4 +16,5 @@
     <label for="direction">Left or right (1 for L, 2 for R): </label>
     <input id="direction" type="integer" name="direction" value="{{ 0 }}">
     <input type="submit" value="Submit" />
+    -->
 </form>

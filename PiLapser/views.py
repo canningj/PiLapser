@@ -1,26 +1,23 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from .piLapse import moveForward
-import RPi.GPIO as GPIO
-from time import sleep
-from subprocess import call
 
-from .forms import totalImages
+from .forms import stepCount
 
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
         return render(request, 'index.html', context=None)
 
-def get_totalImages(request):
+def get_stepCount(request):
     if request.method == 'POST':
-        form = totalImages(request.POST)
+        form = stepCount(request.POST)
         # check to see if user input is valid (if it's an integer)
         if form.is_valid():
-            result = moveForward(int(totalImages))
+            result = moveForward(stepCount)
             # redirect to a status page for the timelapse sequence:
             return render(request, 'index.html', {'result': result})
 
     else:
-        form = totalImages()
+        form = stepCount()
 
     return render(request, 'piLapse.html', {'form': form})
