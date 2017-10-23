@@ -16,7 +16,7 @@ def get_totalImages(request):
         form = totalImages(request.POST)
         # check to see if user input is valid (if it's an integer)
         if form.is_valid():
-            result = moveForward(20)
+            result = moveForward(int(totalImages))
             # redirect to a status page for the timelapse sequence:
             return render(request, 'index.html', {'result': result})
 
