@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from piLapse import moveForward
+from .piLapse import moveForward
 
 from .forms import totalImages
 
