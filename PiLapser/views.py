@@ -9,7 +9,7 @@ from .forms import totalImages
 
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
-        return render(request, 'piLapse.html', context=None)
+        return render(request, 'index.html', context=None)
 
 def get_totalImages(request):
     if request.method == 'POST':
