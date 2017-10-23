@@ -1,7 +1,15 @@
-<form action="/getImages/" method="post">
+<form method="POST" action="">
     {% csrf_token %}
     {{ form }}
     <label for="totalImages"># of photos: </label>
-    <input id="totalImages" type="text" name="totalImages" value="{{ 0 }}">
+    <input id="totalImages" type="integer" name="totalImages" value="{{ 0 }}">
+    <label for="shutterSpeed">Shutter speed of the camera: </label>
+    <input id="shutterSpeed" type="integer" name="shutterSpeed" value="{{ 0 }}">
+    <label for="interval"># of photos: </label>
+    <input id="interval" type="integer" name="interval" value="{{ 0 }}">
+    <label for="steps">Steps between photos: </label>
+    <input id="steps" type="integer" name="steps" value="{{ 0 }}">
+    <label for="direction">Left or right (1 for L, 2 for R): </label>
+    <input id="direction" type="integer" name="direction" value="{{ 0 }}">
     <input type="submit" value="Submit" />
 </form>

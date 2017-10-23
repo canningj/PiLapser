@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.http import HttpResponseRedirect
+from piLapse import moveForward
 
 from .forms import totalImages
 
@@ -13,8 +13,9 @@ def get_totalImages(request):
         form = totalImages(request.POST)
         # check to see if user input is valid (if it's an integer)
         if form.is_valid():
+            result = moveForward(20)
             # redirect to a status page for the timelapse sequence:
-            return HttpResponseRedirect('/sequence/')
+            return render(request, 'piLapse.html', {'result': result})
 
     else:
         form = totalImages()
