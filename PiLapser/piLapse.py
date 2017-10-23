@@ -11,7 +11,7 @@ inProgress = True
 # direction = input("Move left or right (1 for left): ")
 
 # Hardcoding values for testing purposes
-totalPhotos = 5
+totalPhotos = 3
 shutter = 1
 interval = 1
 steps = 3
