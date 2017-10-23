@@ -4,11 +4,18 @@ from subprocess import call
 
 inProgress = True
 
-totalPhotos = input("Enter the number of photos: ")
-shutter = input("Shutter speed of camera: ")
-interval = input("Interval between photos: ")
-steps = input("Steps between each photo: ")
-direction = input("Move left or right (1 for left): ")
+# totalPhotos = input("Enter the number of photos: ")
+# shutter = input("Shutter speed of camera: ")
+# interval = input("Interval between photos: ")
+# steps = input("Steps between each photo: ")
+# direction = input("Move left or right (1 for left): ")
+
+# Hardcoding values for testing purposes
+totalPhotos = 5
+shutter = 1
+interval = 1
+steps = 3
+direction = 1
 
 photosTaken = 0
 
@@ -21,11 +28,11 @@ coil_A_2_pin = 17
 coil_B_1_pin = 23
 coil_B_2_pin = 24
 
-
-coilSeq1 = [1, 0, 1, 0]
-coilSeq2 = [0, 1, 1, 0]
-coilSeq3 = [0, 1, 0, 1]
-coilSeq4 = [1, 0, 0, 1]
+Seq[0] = []
+Seq[0] = [1, 0, 1, 0]
+Seq[1] = [0, 1, 1, 0]
+Seq[2] = [0, 1, 0, 1]
+Seq[3] = [1, 0, 0, 1]
 
 GPIO.setup(enable_pin, GPIO.OUT)
 GPIO.setup(coil_A_1_pin, GPIO.OUT)
@@ -48,30 +55,30 @@ def moveStepper(coilSequence):
 
 def moveForward(steps):
     for i in range(0, steps):
-        moveStepper(coilSeq1)
+        moveStepper(Seq[0])
         sleep(0.009)
-        moveStepper(coilSeq2)
+        moveStepper(Seq[1])
         sleep(0.009)
-        moveStepper(coilSeq3)
+        moveStepper(Seq[2])
         sleep(0.009)
-        moveStepper(coilSeq4)
+        moveStepper(Seq[3])
         sleep(0.009)
 
 def moveBackwards(steps):
     for i in range(0, steps):
-        moveStepper(coilSeq4)
+        moveStepper(Seq[3])
         sleep(0.009)
-        moveStepper(coilSeq3)
+        moveStepper(Seq[2])
         sleep(0.009)
-        moveStepper(coilSeq2)
+        moveStepper(Seq[1])
         sleep(0.009)
-        moveStepper(coilSeq1)
+        moveStepper(Seq[0])
         sleep(0.009)
 
 
 
-def takePhoto():
-    call(["gphoto2", "--trigger-capture"])
+def takePhoto(photosTaken):
+    #call(["gphoto2", "--trigger-capture"])
     print("Current photo: %s, Total Photos: %s" % (totalPhotos, photosTaken))
     sleep(int(shutter))
     if (int(direction) == '1'):
@@ -79,13 +86,21 @@ def takePhoto():
     else:
         moveBackwards(int(steps))
     sleep(int(interval))
+    photosTaken += 1
 
 
 
 while (inProgress):
 
-    if (photosTaken < int(totalPhotos)):
-        takePhoto()
+    if (photosTaken < totalPhotos):
+        call(["gphoto2", "--trigger-capture"])
+        print("Current photo: %s, Total Photos: %s" % (totalPhotos, photosTaken))
+        sleep(int(shutter))
+        if (int(direction) == '1'):
+            moveForward(int(steps))
+        else:
+            moveBackwards(int(steps))
+        sleep(int(interval))
         photosTaken += 1
 
     else:
