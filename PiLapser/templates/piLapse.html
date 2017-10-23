@@ -1,5 +1,7 @@
 <form action="/getImages/" method="post">
     {% csrf_token %}
     {{ form }}
+    <label for="totalImages"># of photos: </label>
+    <input id="totalImages" type="text" name="totalImages" value="{{ 0 }}">
     <input type="submit" value="Submit" />
 </form>
