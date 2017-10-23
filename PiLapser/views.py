@@ -13,7 +13,8 @@ def get_stepCount(request):
         form = stepCount(request.POST)
         # check to see if user input is valid (if it's an integer)
         if form.is_valid():
-            result = moveForward(stepCount)
+            steps = request.POST.get('step_count', '')
+            result = moveForward(steps)
             # redirect to a status page for the timelapse sequence:
             return render(request, 'index.html', {'result': result})
 
