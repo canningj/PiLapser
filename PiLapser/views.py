@@ -18,7 +18,7 @@ def get_totalImages(request):
         if form.is_valid():
             result = moveForward(20)
             # redirect to a status page for the timelapse sequence:
-            return render(request, 'piLapse.html', {'result': result})
+            return render(request, 'index.html', {'result': result})
 
     else:
         form = totalImages()
