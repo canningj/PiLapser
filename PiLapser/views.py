@@ -23,10 +23,15 @@ def get_stepCount(request):
         form = stepCount(request.POST)
         # check to see if user input is valid (if it's an integer)
         if form.is_valid():
+            # get all the fields that have been populated on the page and print them
             steps = request.POST.get('step_count', '')
-            speed = request.POST.get('shuttle_speed', '')
+            speed = request.POST.get('shutter_speed', '')
+            images = request.POST.get('total_images', '')
+            interval = request.POST.get('interval', '')
+            direction = request.POST.get('direction', '')
             # result = moveForward(int(steps))
-            print(int(steps), speed)
+            print("Move " + steps + " steps " + direction + ".  Shutter speed = "
+                  + speed + ". Total images = " + images + ".  Interval length : " + interval)
             result = "yahoo!"
             # redirect to a status page for the timelapse sequence:
             return render(request, 'index.html', {'result': result})
