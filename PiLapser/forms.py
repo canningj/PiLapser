@@ -1,7 +1,23 @@
 from django import forms
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
 
-class totalImages(forms.Form):
-    total_images = forms.IntegerField(label='# of photos: ')
+class timelapseFields(forms.Form):
+    total_images = forms.IntegerField(label='Number of Photos: ')
+    length = forms.IntegerField(label='Length of Movement (cm): ')
+    interval = forms.IntegerField(label='Interval between photos: ')
+    shutter_speed = forms.IntegerField(label='Shutter speed of camera')
+    direction = forms.CharField(label='Direction (+ or =')
 
-class stepCount(forms.Form):
-    step_count = forms.IntegerField(label='# of Steps: ')
+    def field_validation(self):
+        length = self.cleaned_data['length']
+        direction = self.cleaned_data['direction']
+
+        if length > 70:
+            raise ValidationError(_('Length cannot exceed the length of the slider (70cm)'))
+
+        if direction != ('+' or '-'):
+            raise ValidationError(_('Direction must be "+" or "-"'))
+
+        return length, direction
+
