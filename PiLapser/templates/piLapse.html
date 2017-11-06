@@ -5,12 +5,13 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'piLapse.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="{% static 'piLapse.js' %}"></script>
     </head>
     <body>
         <h1>piLapser</h1>
         <div class="form">
-        <form method="POST" action="">
+        <form method="POST" oninput="output1.value=camslider.value" action="">
                 {% csrf_token %}
                 <label for="total_images"># of photos: </label>
                 <input id="total_images" type="integer" name="total_images" value="{{ 0 }}">
@@ -23,7 +24,8 @@
                 <br>
                 <label>Length of timelapse:</label>
                 <div id="slidecontainer">
-                    <input type="range" class="slider" name="length" min="0" max="70" value="35" />
+                    <input type="range" class="slider" name="camslider" min="0" max="70" value="35" />
+                    <output name="output1" for="camslider">35</output>
                 </div>
                 <br>
                 <label for="direction">+ or -: </label>
