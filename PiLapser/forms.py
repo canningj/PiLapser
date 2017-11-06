@@ -19,5 +19,5 @@ class timelapseFields(forms.Form):
         if direction != ('+' or '-'):
             raise ValidationError(_('Direction must be "+" or "-"'))
 
-        return length, direction
+        return direction
 

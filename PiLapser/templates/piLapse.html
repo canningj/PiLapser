@@ -1,21 +1,37 @@
-<form method="POST" action="">
-    {% csrf_token %}
-
-    <label for="total_images"># of photos: </label>
-    <input id="total_images" type="integer" name="total_images" value="{{ 0 }}">
-    <br>
-    <label for="shutter_speed">Shutter speed of the camera: </label>
-    <input id="shutter_speed" type="integer" name="shutter_speed" value="{{ 0 }}">
-    <br>
-    <label for="interval">Interval between photos: </label>
-    <input id="interval" type="integer" name="interval" value="{{ 0 }}">
-    <br>
-    <label for="length">Length of timelapse: </label>
-    <input id="length" type="integer" name="length" value="{{ 0 }}">
-    <br>
-    <label for="direction">+ or -: </label>
-    <input id="direction" type="char" name="direction" value="{{ '+/-' }}">
-    <br>
-    <input type="submit" value="Submit" />
-
-</form>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>piLapser</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'piLapse.css' %}">
+        <script type="text/javascript" src="{% static 'piLapse.js' %}"></script>
+    </head>
+    <body>
+        <h1>piLapser</h1>
+        <div class="form">
+        <form method="POST" action="">
+                {% csrf_token %}
+                <label for="total_images"># of photos: </label>
+                <input id="total_images" type="integer" name="total_images" value="{{ 0 }}">
+                <br>
+                <label for="shutter_speed">Shutter speed of the camera: </label>
+                <input id="shutter_speed" type="integer" name="shutter_speed" value="{{ 0 }}">
+                <br>
+                <label for="interval">Interval between photos: </label>
+                <input id="interval" type="integer" name="interval" value="{{ 0 }}">
+                <br>
+                <label>Length of timelapse:</label>
+                <div id="slidecontainer">
+                    <input type="range" class="slider" name="length" min="0" max="70" value="35" />
+                </div>
+                <br>
+                <label for="direction">+ or -: </label>
+                <input id="direction" type="char" name="direction" value="{{ '+/-' }}">
+                <br>
+                <br>
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </body>
+</html>

@@ -48,5 +48,6 @@ def get_fields(request):
     # Otherwise, it is most likely a GET request so create the field.
     else:
         form = timelapseFields()
+        print("not working.")
 
     return render(request, 'piLapse.html', {'form': form})
