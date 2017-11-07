@@ -1,9 +1,11 @@
+$(document).ready(function() {
+
 /**
  * Created by joncanning on 2017-11-05.
- */
-var slider = document.getElementById("length");
+var slider = document.getElementById("camslider");
 length = slider.value;
 
+ */
 
 /* This would store the information on whether a button was being held down or not. */
 var hold = false;
@@ -26,3 +28,4 @@ function checkForHold() {
     }
 
 }
+});

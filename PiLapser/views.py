@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .forms import timelapseFields
 
 #from .piLapse import runTimelapse
@@ -21,6 +21,11 @@ def fields(request):
     return HttpResponse("Move " + length + "cm " + direction + ".  Shutter speed = "
                         + shutter_speed + ". Total images = " + total_images +
                         ".  Interval length : " + interval)
+
+@csrf_exempt
+def move_left(request):
+    print("got move_left")
+    return JsonResponse({'status':'it worked'})
 
 @csrf_exempt
 def get_fields(request):
