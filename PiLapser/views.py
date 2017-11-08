@@ -6,32 +6,32 @@ from .forms import timelapseFields
 
 #from .piLapse import runTimelapse
 
-class HomePageView(TemplateView):
-    def get(self, request, **kwargs):
-        return render(request, 'index.html', context=None)
-
 @csrf_exempt
-def fields(request):
-    length = request.POST.get('length', '')
-    shutter_speed = request.POST.get('shutter_speed', '')
-    total_images = request.POST.get('total_images', '')
-    interval = request.POST.get('interval', '')
-    direction = request.POST.get('direction', '')
+def move_pos(request):
+    if request.method == 'GET':
+        print("got move_pos")
+        #moveForewards(30)
 
-    return HttpResponse("Move " + length + "cm " + direction + ".  Shutter speed = "
-                        + shutter_speed + ". Total images = " + total_images +
-                        ".  Interval length : " + interval)
+        return HttpResponse("Moving +...")
 
-@csrf_exempt
-def move_left(request):
-    print("got move_left")
-    return JsonResponse({'status':'it worked'})
+    else:
+        return render(request, 'index.html')
+
+def move_neg(request):
+    if request.method == 'GET':
+        print("got move_neg")
+        #moveBackwards(30)
+
+        return HttpResponse("Moving -...")
+    else:
+        return render(request, 'index.html')
 
 @csrf_exempt
 def get_fields(request):
     # Process the field data if it's a POST request
     if request.method == 'POST':
         form = timelapseFields(request.POST)
+        print("it's here")
         # check to see if user input is valid
         if form.is_valid():
             # get all the fields that have been populated on the page and print them

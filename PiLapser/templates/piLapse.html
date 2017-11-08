@@ -7,11 +7,29 @@
         <link rel="stylesheet" href="{% static 'piLapse.css' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="{% static 'piLapse.js' %}"></script>
+        <script>
+                function move_pos() {
+                    $.ajax({
+                    url: '/move_pos/'
+                    });
+                }
+                function move_neg() {
+                    $.ajax({
+                    url: '/move_neg/'
+                    });
+                }
+        </script>
     </head>
+
     <body>
         <h1>piLapser</h1>
         <div class="form">
-        <form method="POST" oninput="output1.value=camslider.value" action="">
+            <div class="btn-group">
+                <button onclick="move_pos()" class="btn btn-primary">+</button>
+                <button onclick="move_neg()" class="btn btn-default">-</button>
+            </div>
+            <br>
+            <form method="POST" oninput="output1.value=length.value">
                 {% csrf_token %}
                 <label for="total_images"># of photos: </label>
                 <input id="total_images" type="integer" name="total_images" value="{{ 0 }}">
@@ -24,12 +42,12 @@
                 <br>
                 <label>Length of timelapse:</label>
                 <div id="slidecontainer">
-                    <input type="range" class="slider" name="camslider" min="0" max="70" value="35" />
-                    <output name="output1" for="camslider">35</output>
+                    <input type="range" class="slider" name="length" min="0" max="70" value="35" />
+                    <output name="output1" for="length">35</output>
                 </div>
                 <br>
                 <label for="direction">+ or -: </label>
-                <input id="direction" type="char" name="direction" value="{{ '+/-' }}">
+                <input id="direction" type="char" name="direction" value="{{ '+' }}">
                 <br>
                 <br>
                 <input type="submit" value="Submit" />

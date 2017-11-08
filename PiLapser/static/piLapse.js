@@ -1,14 +1,19 @@
 $(document).ready(function() {
 
-/**
- * Created by joncanning on 2017-11-05.
-var slider = document.getElementById("camslider");
+
+var slider = document.getElementById("length");
 length = slider.value;
 
- */
+function move_pos() {
+    $.ajax({
+        url: '/move_pos/'
+    });
+}
+
 
 /* This would store the information on whether a button was being held down or not. */
 var hold = false;
+
 function mousedown()
 {
   hold = true;
@@ -24,7 +29,7 @@ function checkForHold() {
         /* figure out a way to call the python script to move the camera while
         button is held...
          */
-        moveCamera()
+
     }
 
 }
