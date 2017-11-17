@@ -1,0 +1,35 @@
+<form {{action "save" on="submit"}}>
+  <div>
+    <label>
+      Totalimages
+      {{input type="text" value=model.totalImages}}
+    </label>
+  </div>
+  <div>
+    <label>
+      Length
+      {{input type="text" value=model.length}}
+    </label>
+  </div>
+  <div>
+    <label>
+      Interval
+      {{input type="text" value=model.interval}}
+    </label>
+  </div>
+  <div>
+    <label>
+      Shutter speed
+      {{input type="text" value=model.shutterSpeed}}
+    </label>
+  </div>
+  <div>
+    <label>
+      Direction
+      {{input type="text" value=model.direction}}
+    </label>
+  </div>
+  <div>
+    <input type="submit" value="Save">
+  </div>
+</form>

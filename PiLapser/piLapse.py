@@ -77,9 +77,4 @@ def runTimelapse(shutter, interval, length, totalPhotos, direction):
 
     print("Timelapse completed.")
 
-def moveCamera(direction):
-    if (direction == "+"):
-        moveForward(20)
-    else:
-        moveBackwards(20)
 

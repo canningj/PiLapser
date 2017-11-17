@@ -1,0 +1,66 @@
+<h1>Pilapsers list</h1>
+
+<p>
+  {{link-to "New Pilapser" "piLapsers.new" }}
+</p>
+
+{{#if model.length}}
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Totalimages
+        </th>
+        <th>
+          Length
+        </th>
+        <th>
+          Interval
+        </th>
+        <th>
+          Shutter speed
+        </th>
+        <th>
+          Direction
+        </th>
+        <th colspan="3">
+          Actions
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |piLapser|}}
+        <tr>
+          <td>
+            {{piLapser.totalImages}}
+          </td>
+          <td>
+            {{piLapser.length}}
+          </td>
+          <td>
+            {{piLapser.interval}}
+          </td>
+          <td>
+            {{piLapser.shutterSpeed}}
+          </td>
+          <td>
+            {{piLapser.direction}}
+          </td>
+          <td>
+            {{link-to "Edit" "piLapsers.edit" piLapser}}
+          </td>
+          <td>
+            {{link-to "Show" "piLapsers.show" piLapser}}
+          </td>
+          <td>
+            <a href="#" {{action "remove" piLapser}}>Remove</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p id="blankslate">
+    No Pilapsers found
+  </p>
+{{/if}}

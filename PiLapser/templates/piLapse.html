@@ -10,12 +10,14 @@
         <script>
                 function move_pos() {
                     $.ajax({
-                    url: '/move_pos/'
+                    url: '/move_pos/',
+                    type: 'POST'
                     });
                 }
                 function move_neg() {
                     $.ajax({
-                    url: '/move_neg/'
+                    url: '/move_neg/',
+                    type: 'POST'
                     });
                 }
         </script>
@@ -42,8 +44,10 @@
                 <br>
                 <label>Length of timelapse:</label>
                 <div id="slidecontainer">
+                    <nobr>
                     <input type="range" class="slider" name="length" min="0" max="70" value="35" />
                     <output name="output1" for="length">35</output>
+                    </nobr>
                 </div>
                 <br>
                 <label for="direction">+ or -: </label>

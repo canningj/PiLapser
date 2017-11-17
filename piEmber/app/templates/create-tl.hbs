@@ -1,0 +1,27 @@
+<form {{action 'move_neg' on='submit'}}>
+  <p>
+    <label for="total_images">Total images in sequence</label>
+    {{input id='total_images' placeholder='0' value=total_images}}
+  </p>
+  <p>
+    <label for="length">Amount of Movement</label>
+    {{input id='length' placeholder='0cm' value=length}}
+  </p>
+  <p>
+    <label for="interval">Interval between images</label>
+    {{input id='interval' placeholder='1s' value=interval}}
+  </p>
+  <p>
+    <label for="shutter_speed">Camera Shutter Speed</label>
+    {{input id='shutter_speed' placeholder='Drop down menu' value=shutter_speed}}
+  </p>
+  <p>
+    <label for="direction">Direction</label>
+    {{input id='direction' placeholder='+/-' value=direction}}
+  </p>
+  <p>
+    <button type="submit">Run</button>
+  </p>
+</form>
+<button type="submit" onclick="move_pos">Idiot</button>
+{{outlet}}

@@ -14,10 +14,10 @@ class timelapseFields(forms.Form):
         direction = self.cleaned_data['direction']
 
         if length > 70:
-            raise ValidationError(_('Length cannot exceed the length of the slider (70cm)'))
+            raise ValidationError('Length cannot exceed the length of the slider (70cm)')
 
         if direction != ('+' or '-'):
-            raise ValidationError(_('Direction must be "+" or "-"'))
+            raise ValidationError('Direction must be "+" or "-"')
 
         return direction
 

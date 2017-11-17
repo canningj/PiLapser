@@ -5,10 +5,22 @@ from django.http import HttpResponse, JsonResponse
 from .forms import timelapseFields
 
 #from .piLapse import runTimelapse
+from rest_framework import viewsets
+from .models import timelapseParams
+from .serializers import paramSerializer
+
+
+
+class timelapseViewSet(viewsets.ModelViewSet):
+    """
+    API calls for piLapser
+    """
+    queryset = timelapseParams.objects.all()
+    serializer_class = paramSerializer
 
 @csrf_exempt
 def move_pos(request):
-    if request.method == 'GET':
+    if request.method == 'POST':
         print("got move_pos")
         #moveForewards(30)
 
@@ -17,8 +29,9 @@ def move_pos(request):
     else:
         return render(request, 'index.html')
 
+@csrf_exempt
 def move_neg(request):
-    if request.method == 'GET':
+    if request.method == 'POST':
         print("got move_neg")
         #moveBackwards(30)
 
@@ -28,10 +41,10 @@ def move_neg(request):
 
 @csrf_exempt
 def get_fields(request):
+
     # Process the field data if it's a POST request
     if request.method == 'POST':
         form = timelapseFields(request.POST)
-        print("it's here")
         # check to see if user input is valid
         if form.is_valid():
             # get all the fields that have been populated on the page and print them
@@ -43,6 +56,11 @@ def get_fields(request):
 
             # Run the timelapse with the specified parameters
             # runTimelapse(shutter_speed, interval, length, total_images, direction)
+            print("New timelapse initiated... \n"
+                                "Details: \n Moving "
+                                + direction + length + "cm. " + "Shutter speed = "
+                                + shutter_speed + ". Total images = " + total_images +
+                                ".  Interval length = " + interval)
 
             return HttpResponse("New timelapse initiated... \n"
                                 "Details: \n Moving "
