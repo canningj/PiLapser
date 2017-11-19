@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
 
   move_pos() {
       Ember.$.ajax({
-        url: 'localhost:8000//move_pos/',
+        url: 'localhost:8000/move_pos/',
         type: 'POST',
       });
     },
@@ -23,26 +23,26 @@ export default Ember.Controller.extend({
       Ember.$.ajax({
         url: ENV.host + '/run_timelapse/',
         type: 'POST',
-        data: {
+        data: JSON.stringify({
           total_images: total_images,
           length: length,
           interval: interval,
           shutter_speed: shutter_speed,
           direction: direction
-        },
+        })
       });
     },
 
     move_pos() {
       Ember.$.ajax({
-        url: 'localhost:8000//move_pos/',
+        url: 'localhost:8000/move_pos/',
         type: 'POST',
       });
     },
 
     move_neg() {
       Ember.$.ajax({
-        url: 'localhost:8000//move_neg/',
+        url: 'localhost:8000/move_neg/',
         type: 'POST',
       });
     }
