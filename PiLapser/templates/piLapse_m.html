@@ -1,0 +1,59 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>piLapser MOBILE</title>
+        <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'piLapse.css' %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="{% static 'jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'piLapse.js' %}"></script>
+
+        <script>
+                function move_pos() {
+                    $.ajax({
+                    url: '/move_pos/'
+                    });
+                }
+                function move_neg() {
+                    $.ajax({
+                    url: '/move_neg/'
+                    });
+                }
+        </script>
+
+    </head>
+    <body>
+        <h1>piLapser MOBILE</h1>
+        <div class="form">
+            <div class="btn-group">
+                <button onclick="move_pos()" class="btn btn-primary">+</button>
+                <button onclick="move_neg()" class="btn btn-default">-</button>
+            </div>
+            <br>
+            <form method="POST" oninput="output1.value=length.value">
+                {% csrf_token %}
+                <label for="total_images"># of photos: </label>
+                <input id="total_images" type="integer" name="total_images" value="{{ 0 }}">
+                <br>
+                <label for="shutter_speed">Shutter speed of the camera: </label>
+                <input id="shutter_speed" type="integer" name="shutter_speed" value="{{ 0 }}">
+                <br>
+                <label for="interval">Interval between photos: </label>
+                <input id="interval" type="integer" name="interval" value="{{ 0 }}">
+                <br>
+                <label>Length of timelapse:</label>
+                <div id="slidecontainer">
+                    <input type="range" class="slider" name="length" min="0" max="70" value="35" />
+                    <output name="output1" for="length">35</output>
+                </div>
+                <br>
+                <label for="direction">+ or -: </label>
+                <input id="direction" type="char" name="direction" value="{{ '+' }}">
+                <br>
+                <br>
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </body>
+</html>

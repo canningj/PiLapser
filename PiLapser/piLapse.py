@@ -35,7 +35,7 @@ def moveStepper(coilSequence):
     GPIO.output(coil_B_1_pin, B1)
     GPIO.output(coil_B_2_pin, B2)
 
-def moveForward(steps):
+def moveForwards(steps):
     for i in range(0, steps):
         moveStepper(coilSeq1)
         sleep(0.009)
@@ -62,7 +62,7 @@ def takePhoto(steps, shutter, direction):
     call(["gphoto2", "--trigger-capture"])
     sleep(int(shutter))
     if (direction == '+'):
-        moveForward(int(steps))
+        moveForwards(int(steps))
     else:
         moveBackwards(int(steps))
 
@@ -79,7 +79,7 @@ def runTimelapse(shutter, interval, length, totalPhotos, direction):
 
 def moveCamera(direction):
     if (direction == "+"):
-        moveForward(20)
+        moveForwards(20)
     else:
         moveBackwards(20)
 

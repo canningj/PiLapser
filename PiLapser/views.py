@@ -4,13 +4,13 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
 from .forms import timelapseFields
 
-from .piLapse import runTimelapse, moveForward, moveBackwards
+#from .piLapse import runTimelapse, moveForwards, moveBackwards
 
 @csrf_exempt
 def move_pos(request):
     if request.method == 'GET':
         print("got move_pos")
-        moveForward(30)
+        #moveForwards(30)
 
         return HttpResponse("Moving +...")
 
@@ -20,7 +20,7 @@ def move_pos(request):
 def move_neg(request):
     if request.method == 'GET':
         print("got move_neg")
-        moveBackwards(30)
+        #moveBackwards(30)
 
         return HttpResponse("Moving -...")
     else:
@@ -32,6 +32,7 @@ def get_fields(request):
     if request.method == 'POST':
         form = timelapseFields(request.POST)
         print("it's here")
+        print(request.flavour)
         # check to see if user input is valid
         if form.is_valid():
             # get all the fields that have been populated on the page and print them
@@ -42,7 +43,7 @@ def get_fields(request):
             direction = request.POST.get('direction', '')
 
             # Run the timelapse with the specified parameters
-            runTimelapse(int(shutter_speed), int(interval), int(length), int(total_images), direction)
+            #runTimelapse(int(shutter_speed), int(interval), int(length), int(total_images), direction)
 
             return HttpResponse("New timelapse initiated... \n"
                                 "Details: \n Moving "
@@ -53,6 +54,9 @@ def get_fields(request):
     # Otherwise, it is most likely a GET request so create the field.
     else:
         form = timelapseFields()
-        print("not working.")
+        print(request.flavour)
 
-    return render(request, 'piLapse.html', {'form': form})
+    if request.flavour == 'mobile':
+        return render(request, 'piLapse_m.html', {'form': form})
+    else:
+        return render(request, 'piLapse.html', {'form': form})
