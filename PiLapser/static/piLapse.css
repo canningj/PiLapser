@@ -1,14 +1,5 @@
-body {
-    padding-left: 25px;
-}
-
-h1 {
-    color: #003366;
-    font-family: 'Helvetica Neue';
-}
-
 label {
-    color: #5b80b2;
+    color: #000000;
 }
 
 .form {
@@ -37,7 +28,7 @@ label {
     appearance: none;
     width: 30px;
     height: 30px;
-    background: #003366;
+    background: #4CAF50;
     cursor: pointer;
 }
 

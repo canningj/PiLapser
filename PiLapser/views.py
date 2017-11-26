@@ -4,13 +4,13 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
 from .forms import timelapseFields
 
-#from .piLapse import runTimelapse, moveForwards, moveBackwards
+from .piLapse import runTimelapse, moveForwards, moveBackwards
 
 @csrf_exempt
 def move_pos(request):
     if request.method == 'GET':
         print("got move_pos")
-        #moveForwards(30)
+        moveForwards(50)
 
         return HttpResponse("Moving +...")
 
@@ -20,7 +20,7 @@ def move_pos(request):
 def move_neg(request):
     if request.method == 'GET':
         print("got move_neg")
-        #moveBackwards(30)
+        moveBackwards(50)
 
         return HttpResponse("Moving -...")
     else:

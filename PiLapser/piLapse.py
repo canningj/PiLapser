@@ -59,7 +59,7 @@ def moveBackwards(steps):
 
 
 def takePhoto(steps, shutter, direction):
-    call(["gphoto2", "--trigger-capture"])
+    #call(["gphoto2", "--trigger-capture"])
     sleep(int(shutter))
     if (direction == '+'):
         moveForwards(int(steps))
@@ -68,7 +68,8 @@ def takePhoto(steps, shutter, direction):
 
 def runTimelapse(shutter, interval, length, totalPhotos, direction):
     photosTaken = 0
-    steps = length / totalPhotos
+    distance = length * 12
+    steps = distance / totalPhotos
     for i in range(0, totalPhotos):
         takePhoto(steps, shutter, direction)
         print("Current photo: %s, Total Photos: %s" % (i, photosTaken))
@@ -76,10 +77,4 @@ def runTimelapse(shutter, interval, length, totalPhotos, direction):
         photosTaken += 1
 
     print("Timelapse completed.")
-
-def moveCamera(direction):
-    if (direction == "+"):
-        moveForwards(20)
-    else:
-        moveBackwards(20)
 
