@@ -8,16 +8,22 @@
         {
             $.ajax(
             {
-                type: "POST",
+                type: "GET",
                 url: "/status/",
                 data: status,
                 dataType: "text",
+                success: function (cur_stat)
+                {
+                    alert("this worked out")
+                    document.getElementById("cur_status").innerHTML = cur_stat;
+                }
             });
         }
     </script>
 
     <body>
         <h1>Status of Timelapse</h1>
-        <input type="button" onClick="get_status()"  value="cur_status"/>
+        <input type="button" onClick="get_status()" value="Status of Timelapse"/>
+        <p id="cur_status"></p>
     </body>
 </html>
