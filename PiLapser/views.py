@@ -45,11 +45,12 @@ def get_fields(request):
             # Run the timelapse with the specified parameters
 
             p1 = Process(runTimelapse(int(shutter_speed), int(interval), int(length), int(total_images), direction))
-            p1.start()
-            p2 = Process(render_status())
+            p2 = Process(HttpResponse(render(request, 'status.html')))
             p2.start()
-            p1.join()
+            p1.start()
             p2.join()
+            p1.join()
+
             return HttpResponse("Timelapse complete")
             #return HttpResponse("New timelapse initiated... \n"
             #                    "Details: \n Moving "
