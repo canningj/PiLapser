@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
 from .forms import timelapseFields
+from multiprocessing import Process
 
 from .piLapse import runTimelapse, moveForwards, moveBackwards, get_status
 
@@ -42,10 +43,14 @@ def get_fields(request):
             direction = request.POST.get('direction', '')
 
             # Run the timelapse with the specified parameters
-            HttpResponse(render(request, 'status.html'))
-            runTimelapse(int(shutter_speed), int(interval), int(length), int(total_images), direction)
+            p1 = Process(render_status(request))
+            p2 = Process(runTimelapse(int(shutter_speed), int(interval), int(length), int(total_images), direction))
+            p1.start()
+            p2.start()
+            p1.join()
+            p2.join()
 
-            return HttpResponse("Timelapse complete")
+            return render(request, 'status.html')
             #return HttpResponse("New timelapse initiated... \n"
             #                    "Details: \n Moving "
             #                    + direction + length + "cm. " + "Shutter speed = "
