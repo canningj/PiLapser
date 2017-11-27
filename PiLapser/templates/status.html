@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Status</title>
+    </head>
+    <script>
+        function get_status()
+        {
+            $.ajax(
+            {
+                type: "POST",
+                url: "/status/",
+                data: status,
+                dataType: "text",
+            });
+        }
+    </script>
+
+    <body>
+        <h1>Status of Timelapse</h1>
+        <input type="button" onClick="get_status()"  value="get status"/>
+    </body>
+</html>
