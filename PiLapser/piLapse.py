@@ -24,6 +24,7 @@ GPIO.setup(coil_B_1_pin, GPIO.OUT)
 GPIO.setup(coil_B_2_pin, GPIO.OUT)
 GPIO.output(enable_pin, 1)
 
+global status
 status = "Timelapse not started yet."
 
 def moveStepper(coilSequence):
@@ -69,6 +70,7 @@ def takePhoto(steps, shutter, direction):
         moveBackwards(int(steps))
 
 def runTimelapse(shutter, interval, length, totalPhotos, direction):
+    global status
     photosTaken = 0
     distance = length * 12
     steps = distance / totalPhotos
