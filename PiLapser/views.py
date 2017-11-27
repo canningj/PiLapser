@@ -44,9 +44,10 @@ def get_fields(request):
 
             # Run the timelapse with the specified parameters
             try:
-                return render(request, 'status.html')
-            finally:
                 runTimelapse(int(shutter_speed), int(interval), int(length), int(total_images), direction)
+
+            finally:
+                return render(request, 'status')
             #return HttpResponse("New timelapse initiated... \n"
             #                    "Details: \n Moving "
             #                    + direction + length + "cm. " + "Shutter speed = "
