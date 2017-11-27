@@ -50,6 +50,7 @@ def localize_tag(parser, token):
         {% localize off %}
             var pi = {{ 3.1415 }};
         {% endlocalize %}
+
     """
     use_l10n = None
     bits = list(token.split_contents())

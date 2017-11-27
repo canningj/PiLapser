@@ -46,10 +46,10 @@ def get_fields(request):
 
             p1 = Process(runTimelapse(int(shutter_speed), int(interval), int(length), int(total_images), direction))
             p1.start()
-            p2 = Process(render(request, 'status.html'))
-            p2.start()
-            p1.join()
-            p2.join()
+	    p2 = Process(render_status())
+	    p2.start()
+	    p1.join()
+	    p2.join()
             return HttpResponse("Timelapse complete")
             #return HttpResponse("New timelapse initiated... \n"
             #                    "Details: \n Moving "
@@ -68,4 +68,7 @@ def get_fields(request):
         return render(request, 'piLapse.html', {'form': form})
 
 def status(request):
-    return get_status()
+    return HttpResponse(str(get_status()))
+
+def render_status(request):
+	return render(request, 'status.html')

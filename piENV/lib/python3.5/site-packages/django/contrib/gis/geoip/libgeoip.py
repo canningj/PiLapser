@@ -8,7 +8,7 @@ from django.conf import settings
 GEOIP_SETTINGS = {key: getattr(settings, key)
                   for key in ('GEOIP_PATH', 'GEOIP_LIBRARY_PATH', 'GEOIP_COUNTRY', 'GEOIP_CITY')
                   if hasattr(settings, key)}
-lib_path = GEOIP_SETTINGS.get('GEOIP_LIBRARY_PATH')
+lib_path = GEOIP_SETTINGS.get('GEOIP_LIBRARY_PATH', None)
 
 # The shared library for the GeoIP C API.  May be downloaded
 #  from http://www.maxmind.com/download/geoip/api/c/

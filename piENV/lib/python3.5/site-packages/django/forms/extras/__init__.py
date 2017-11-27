@@ -1,12 +1,3 @@
-import warnings
-
-from django.forms.widgets import SelectDateWidget
-from django.utils.deprecation import RemovedInDjango20Warning
+from django.forms.extras.widgets import SelectDateWidget
 
 __all__ = ['SelectDateWidget']
-
-
-warnings.warn(
-    "django.forms.extras is deprecated. You can find "
-    "SelectDateWidget in django.forms.widgets instead.",
-    RemovedInDjango20Warning, stacklevel=2)

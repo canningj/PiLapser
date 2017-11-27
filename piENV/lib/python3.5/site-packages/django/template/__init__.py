@@ -42,7 +42,9 @@ Shared:
 # Multiple Template Engines
 
 from .engine import Engine
+
 from .utils import EngineHandler
+
 
 engines = EngineHandler()
 
@@ -52,18 +54,19 @@ __all__ = ('Engine', 'engines')
 # Django Template Language
 
 # Public exceptions
-from .base import VariableDoesNotExist                                  # NOQA isort:skip
-from .context import ContextPopException                                # NOQA isort:skip
-from .exceptions import TemplateDoesNotExist, TemplateSyntaxError       # NOQA isort:skip
+from .base import (TemplateDoesNotExist, TemplateSyntaxError,           # NOQA
+                   VariableDoesNotExist)
+from .context import ContextPopException                                # NOQA
 
 # Template parts
-from .base import (                                                     # NOQA isort:skip
-    Context, Node, NodeList, Origin, RequestContext, StringOrigin, Template,
-    Variable,
-)
+from .base import (Context, Node, NodeList, RequestContext,             # NOQA
+                   StringOrigin, Template, Variable)
+
+# Deprecated in Django 1.8, will be removed in Django 2.0.
+from .base import resolve_variable                                      # NOQA
 
 # Library management
-from .library import Library                                            # NOQA isort:skip
+from .base import Library                                               # NOQA
 
 
 __all__ += ('Template', 'Context', 'RequestContext')

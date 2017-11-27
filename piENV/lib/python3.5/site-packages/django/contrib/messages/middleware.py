@@ -1,9 +1,8 @@
 from django.conf import settings
 from django.contrib.messages.storage import default_storage
-from django.utils.deprecation import MiddlewareMixin
 
 
-class MessageMiddleware(MiddlewareMixin):
+class MessageMiddleware(object):
     """
     Middleware that handles temporary messages.
     """
