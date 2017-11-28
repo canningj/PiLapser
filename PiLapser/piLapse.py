@@ -62,7 +62,7 @@ def moveBackwards(steps):
 
 
 def takePhoto(steps, shutter, direction):
-    #call(["gphoto2", "--trigger-capture"])
+    call(["gphoto2", "--trigger-capture"])
     sleep(int(shutter))
     if (direction == '+'):
         moveForwards(int(steps))

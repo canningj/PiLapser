@@ -6,6 +6,7 @@ from .forms import timelapseFields
 from multiprocessing import Process
 
 from .piLapse import runTimelapse, moveForwards, moveBackwards, get_status
+from .piLapse import get_status
 
 @csrf_exempt
 def move_pos(request):
@@ -44,10 +45,11 @@ def get_fields(request):
 
             # Run the timelapse with the specified parameters
             try:
+                print("Running timelapse")
                 runTimelapse(int(shutter_speed), int(interval), int(length), int(total_images), direction)
 
             finally:
-                return render(request, 'status')
+                return render(request, 'status.html')
             #return HttpResponse("New timelapse initiated... \n"
             #                    "Details: \n Moving "
             #                    + direction + length + "cm. " + "Shutter speed = "
