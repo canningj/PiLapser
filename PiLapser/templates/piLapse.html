@@ -30,7 +30,7 @@
                 <button onclick="location.href='/get_status/';">bruh</button>
             </div>
             <br>
-            <form method="POST" oninput="output1.value=length.value">
+            <form method="POST" oninput="output1.value=length.value" onclick="location.href='/get_status/';">
                 {% csrf_token %}
                 <label for="total_images"># of photos: </label>
                 <input id="total_images" type="integer" name="total_images" value="{{ 0 }}">
@@ -51,7 +51,7 @@
                 <input id="direction" type="char" name="direction" value="{{ '+' }}">
                 <br>
                 <br>
-                <input type="submit" value="Submit" onclick="location.href='/get_status/';"/>
+                <input type="submit" value="Submit"/>
             </form>
         </div>
     </body>
