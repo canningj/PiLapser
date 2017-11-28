@@ -27,10 +27,9 @@
             <div class="btn-group">
                 <button onclick="move_pos()" class="btn btn-primary">+</button>
                 <button onclick="move_neg()" class="btn btn-default">-</button>
-                <button onclick="location.href='/get_status/';">bruh</button>
             </div>
             <br>
-            <form method="POST" onsubmit="location.replace('/get_status/');" oninput="output1.value=length.value">
+            <form method="POST" oninput="output1.value=length.value">
                 {% csrf_token %}
                 <label for="total_images"># of photos: </label>
                 <input id="total_images" type="integer" name="total_images" value="{{ 0 }}">
@@ -53,6 +52,7 @@
                 <br>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+            <button onclick="location.href='/get_status/';" class="btn btn-default">Check Status</button>
         </div>
     </body>
 </html>
