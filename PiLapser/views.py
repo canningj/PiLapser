@@ -1,7 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from .forms import timelapseFields
 from multiprocessing import Process
 
@@ -33,7 +32,6 @@ def get_fields(request):
     # Process the field data if it's a POST request
     if request.method == 'POST':
         form = timelapseFields(request.POST)
-        print(request.flavour)
         # check to see if user input is valid
         if form.is_valid():
             # get all the fields that have been populated on the page and print them
@@ -73,4 +71,4 @@ def status(request):
     return HttpResponse(str(get_status()))
 
 def render_status(request):
-    return HttpResponseRedirect('/get_status/')
+    return render(request, 'status.html')
