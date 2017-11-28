@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .forms import timelapseFields
 from multiprocessing import Process
 
@@ -73,4 +73,4 @@ def status(request):
     return HttpResponse(str(get_status()))
 
 def render_status(request):
-    return render(request, 'status.html')
+    return HttpResponseRedirect('/get_status/')
