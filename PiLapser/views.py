@@ -43,13 +43,20 @@ def get_fields(request):
             interval = request.POST.get('interval', '')
             direction = request.POST.get('direction', '')
 
-            # Run the timelapse with the specified parameters
-            try:
-                print("Running timelapse")
-                runTimelapse(int(shutter_speed), int(interval), int(length), int(total_images), direction)
+            p1 = Process(target=render_status, args=(request,))
+            p1.start()
+            p1.join()
+            p2 = Process(target=runTimelapse, args=(int(shutter_speed),int(interval),int(length),int(total_images),direction,))
+            p2.start()
+            p2.join()
 
-            finally:
-                return render(request, 'status.html')
+            # Run the timelapse with the specified parameters
+            #try:
+            #    print("Running timelapse")
+            #    runTimelapse(int(shutter_speed), int(interval), int(length), int(total_images), direction)
+
+            #finally:
+            #    return render(request, 'status.html')
             #return HttpResponse("New timelapse initiated... \n"
             #                    "Details: \n Moving "
             #                    + direction + length + "cm. " + "Shutter speed = "
