@@ -74,13 +74,14 @@ def runTimelapse(shutter, interval, length, totalPhotos, direction):
     photosTaken = 0
     distance = length * 12
     steps = distance / totalPhotos
+    status = "Timelapse initiated."
     for i in range(1, totalPhotos+1):
         takePhoto(steps, shutter, direction)
-        status = "Photo's taken: %s, Photos Remaining: %s" % (i, (totalPhotos - i))
+        status = "Photos taken: %s, Photos Remaining: %s, Distance Moved: %s" % (i, (totalPhotos - i), (i*steps*totalPhotos))
         sleep(int(interval))
         photosTaken += 1
 
-    print("Timelapse completed.")
+    status = "Timelapse completed."
 
 
 def get_status():

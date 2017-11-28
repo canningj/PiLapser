@@ -43,19 +43,8 @@ def get_fields(request):
 
             render_status(request)
             runTimelapse(int(shutter_speed), int(interval), int(length), int(total_images), direction)
-            return HttpResponse("New timelapse initiated... \n")
-            # Run the timelapse with the specified parameters
-            #try:
-            #    print("Running timelapse")
-            #    runTimelapse(int(shutter_speed), int(interval), int(length), int(total_images), direction)
+            return HttpResponse("Timelapse completed.")
 
-            #finally:
-            #    return render(request, 'status.html')
-            #return HttpResponse("New timelapse initiated... \n"
-            #                    "Details: \n Moving "
-            #                    + direction + length + "cm. " + "Shutter speed = "
-            #                    + shutter_speed + ". Total images = " + total_images +
-            #                    ".  Interval length = " + interval)
 
     # Otherwise, it is most likely a GET request so create the field.
     else:
