@@ -1,14 +1,22 @@
 {% load staticfiles %}
 <html>
-    <head>
-        <title>Status</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Check Status</title>
+
+    <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'piLapse.css' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="{% static 'piLapse.js' %}"></script>
-    </head>
-    <script>
+      <script>
         function get_status()
         {
             $.ajax(
@@ -26,9 +34,61 @@
         }
     </script>
 
-    <body>
-        <h1>Status of Timelapse</h1>
-        <input type="button" onClick="get_status()" value="Status of Timelapse"/>
-        <p id="cur_status"></p>
-    </body>
+    <style>
+      body {
+        padding-top: 54px;
+      }
+      @media (min-width: 992px) {
+        body {
+          padding-top: 56px;
+        }
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/piLapse">piLapser</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/piLapse">New Timelapse
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Status</a>
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h1 class="mt-5">Check Status of Timelapse</h1>
+          <p class="lead">Get updates on how far along the current timelapse is.</p>
+          <ul class="list-unstyled">
+              <li>
+                <input type="button" onClick="get_status()" value="Status of Timelapse" class="btn btn-primary"/>
+                  <br>
+              <li><p id="cur_status"></p></li>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+
 </html>

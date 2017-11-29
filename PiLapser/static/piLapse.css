@@ -1,13 +1,6 @@
-label {
-    color: #000000;
-}
 
-.form {
-    padding-left: 15px;
-}
-
-#slidecontainer {
-    width: 200px;
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #4CAF50 !important;
 }
 
 .slider {
@@ -15,7 +8,7 @@ label {
     appearance: none;
     -webkit-transition: .2s;
     transition: opacity .2s;
-    width: 100%;
+    width: 200px;
     height: 30px;
     background: #d3d3d3;
     outline: none;

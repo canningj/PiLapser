@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from .forms import timelapseFields
-from multiprocessing import Process
 
 from .piLapse import runTimelapse, moveForwards, moveBackwards, get_status
 from .piLapse import get_status
@@ -41,7 +40,6 @@ def get_fields(request):
             interval = request.POST.get('interval', '')
             direction = request.POST.get('direction', '')
 
-            render_status(request)
             runTimelapse(int(shutter_speed), int(interval), int(length), int(total_images), direction)
             return HttpResponse("Timelapse completed.")
 
@@ -49,7 +47,6 @@ def get_fields(request):
     # Otherwise, it is most likely a GET request so create the field.
     else:
         form = timelapseFields()
-        print(request.flavour)
 
     if request.flavour == 'mobile':
         return render(request, 'piLapse_m.html', {'form': form})

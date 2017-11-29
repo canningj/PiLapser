@@ -4,7 +4,6 @@
     <head>
         <title>piLapser MOBILE</title>
         <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'bootstrap-theme.min.css' %}">
         <link rel="stylesheet" href="{% static 'piLapse.css' %}">
         <link rel="stylesheet" href="{% static 'w3.css' %}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,7 +44,7 @@
                 {% csrf_token %}
                 <p>
                     <label for="total_images"># of photos: </label>
-                    <input id="total_images" type="integer" name="total_images" value="{{ 0 }}">
+                    <input id="total_images" type="integer" name="total_images" value="{{ Number of Photos }}">
                 </p>
                 <p>
                 <label for="shutter_speed">Shutter speed of the camera: </label>
