@@ -73,13 +73,18 @@ def runTimelapse(interval, length, totalPhotos, direction):
     global status
     photosTaken = 0
     distance = length * 12
-    steps = distance / totalPhotos
+    steps = distance / (totalPhotos-1)
     status = "Timelapse initiated."
     for i in range(1, totalPhotos):
-        takePhoto(steps, direction)
+        call(["gphoto2", "--trigger-capture"])
+        sleep(1)
+        if (direction == '+'):
+            moveForwards(int(steps))
+        else:
+            moveBackwards(int(steps))
+        photosTaken += 1
         status = "Photos taken: %s, Photos Remaining: %s, Distance Moved: %s" % (i, (totalPhotos - i), (steps*(totalPhotos-i)))
         sleep(int(interval))
-        photosTaken += 1
 
     call(["gphoto2", "--trigger-capture"])
     status = "Timelapse completed."
