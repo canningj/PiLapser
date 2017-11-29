@@ -9,38 +9,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Check Status</title>
+    <title>Timelapse Completed</title>
 
     <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'piLapse.css' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="{% static 'piLapse.js' %}"></script>
-      <script type="text/javascript" src="{% static 'bootstrap.min.js' %}"></script>
-      <script>
-        function get_status()
-        {
-            $.ajax(
-            {
-                type: "GET",
-                url: "/status/",
-                data: status,
-                dataType: "text",
-                success: function (cur_stat)
-                {
-                    console.log("It works")
-                    $("#cur_status").html(cur_stat);
-                }
-            });
-        }
-        function cancel() {
-            $.ajax(
-                {
-                    type: "POST",
-                    url: '/cancel/'
-                });
-        }
-    </script>
+        <script type="text/javascript" src="{% static 'bootstrap.min.js' %}"></script>
+
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
 
     <style>
       body {
@@ -71,9 +53,8 @@
               <a class="nav-link" href="/piLapse">New Timelapse
               </a>
             </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Status</a>
-                <span class="sr-only">(current)</span>
+            <li class="nav-item">
+              <a class="nav-link" href="/get_status">Status</a>
               </a>
             </li>
           </ul>
@@ -85,13 +66,9 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h1 class="mt-5">Check Status of Timelapse</h1>
-          <p class="lead">Get updates on how far along the current timelapse is.</p>
-          <ul class="list-unstyled">
-              <li>
-                <input type="button" onClick="get_status()" value="Status of Timelapse" class="btn btn-primary"/>
-                  <br>
-              <li><p id="cur_status"></p></li>
+          <div class="alert alert-danger">
+            <img src="/static/error.png" width="10%"/><br><strong>Whoops,</strong> there's an issue... <br>Ensure the camera is connected and <a href="/piLapse" onclick="goBack()" class="alert-link">create the timelapse again</a>.
+            </div>
               </li>
           </ul>
         </div>

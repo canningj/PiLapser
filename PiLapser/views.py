@@ -2,29 +2,37 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from .forms import timelapseFields
+from time import sleep
 
-from .piLapse import runTimelapse, moveForwards, moveBackwards, get_status
+from .piLapse import runTimelapse, moveForwards, moveBackwards, get_status, cancel_lapse
 from .piLapse import get_status
 
 @csrf_exempt
 def move_pos(request):
-    if request.method == 'GET':
+    if request.method == 'POST':
         print("got move_pos")
         moveForwards(50)
 
         return HttpResponse("Moving +...")
 
     else:
-        return render(request, 'index.html')
+        return render(request, 'piLapse.html')
 
 def move_neg(request):
-    if request.method == 'GET':
+    if request.method == 'POST':
         print("got move_neg")
         moveBackwards(50)
 
         return HttpResponse("Moving -...")
     else:
-        return render(request, 'index.html')
+        return render(request, 'piLapse.html')
+
+# Not sure if this will work or not.
+def cancel(request):
+    if request.method == 'POST':
+        cancel_lapse()
+        return render(request, 'piLapse.html')
+
 
 @csrf_exempt
 def get_fields(request):
@@ -39,7 +47,8 @@ def get_fields(request):
             interval = request.POST.get('interval', '')
             direction = request.POST.get('direction', '')
 
-            runTimelapse(int(interval), int(length), int(total_images), direction)
+            sleep(10)
+            #runTimelapse(int(interval), int(length), int(total_images), direction)
             return HttpResponse("Timelapse completed.")
 
 
@@ -47,13 +56,16 @@ def get_fields(request):
     else:
         form = timelapseFields()
 
-    if request.flavour == 'mobile':
-        return render(request, 'piLapse_m.html', {'form': form})
-    else:
-        return render(request, 'piLapse.html', {'form': form})
+    return render(request, 'piLapse.html', {'form': form})
 
 def status(request):
     return HttpResponse(str(get_status()))
 
 def render_status(request):
     return render(request, 'status.html')
+
+def completion(request):
+    return render(request, 'completed.html')
+
+def camera_error(request):
+    return render(request, 'camera_error.html')

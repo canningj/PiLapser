@@ -1,10 +1,10 @@
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 from time import sleep
 from subprocess import call
 
 # Initialize the GPIO pins and stepper coils for movement
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
+#GPIO.setmode(GPIO.BCM)
+#GPIO.setwarnings(False)
 
 enable_pin = 18
 coil_A_1_pin = 4
@@ -17,15 +17,16 @@ coilSeq2 = [0, 1, 1, 0]
 coilSeq3 = [0, 1, 0, 1]
 coilSeq4 = [1, 0, 0, 1]
 
-GPIO.setup(enable_pin, GPIO.OUT)
-GPIO.setup(coil_A_1_pin, GPIO.OUT)
-GPIO.setup(coil_A_2_pin, GPIO.OUT)
-GPIO.setup(coil_B_1_pin, GPIO.OUT)
-GPIO.setup(coil_B_2_pin, GPIO.OUT)
-GPIO.output(enable_pin, 1)
+#GPIO.setup(enable_pin, GPIO.OUT)
+#GPIO.setup(coil_A_1_pin, GPIO.OUT)
+#GPIO.setup(coil_A_2_pin, GPIO.OUT)
+#GPIO.setup(coil_B_1_pin, GPIO.OUT)
+#GPIO.setup(coil_B_2_pin, GPIO.OUT)
+#GPIO.output(enable_pin, 1)
 
-global status
+global status, cancel
 status = "Timelapse not started yet."
+cancel = False
 
 def moveStepper(coilSequence):
     A1 = coilSequence[0]
@@ -70,26 +71,35 @@ def takePhoto(steps, direction):
         moveBackwards(int(steps))
 
 def runTimelapse(interval, length, totalPhotos, direction):
-    global status
+    global status, cancel
     photosTaken = 0
     distance = length * 12
     steps = distance / (totalPhotos-1)
     status = "Timelapse initiated."
     for i in range(1, totalPhotos):
+        if (cancel == True):
+            status = "Timelapse cancelled"
+            return
         call(["gphoto2", "--trigger-capture"])
+        photosTaken += 1
+        status = "Photos taken: %s, Photos Remaining: %s, Distance Moved: %s" % (i, (totalPhotos - i), (steps*(totalPhotos-i)))
         sleep(1)
         if (direction == '+'):
             moveForwards(int(steps))
         else:
             moveBackwards(int(steps))
-        photosTaken += 1
-        status = "Photos taken: %s, Photos Remaining: %s, Distance Moved: %s" % (i, (totalPhotos - i), (steps*(totalPhotos-i)))
         sleep(int(interval))
 
     call(["gphoto2", "--trigger-capture"])
     status = "Timelapse completed."
+    return
 
 
 def get_status():
     return status
+
+def cancel_lapse():
+    global cancel
+    cancel = True;
+    return cancel
 
