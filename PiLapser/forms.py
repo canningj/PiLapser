@@ -6,7 +6,6 @@ class timelapseFields(forms.Form):
     total_images = forms.IntegerField(label='Number of Photos: ')
     length = forms.IntegerField(label='Length of Movement (cm): ')
     interval = forms.IntegerField(label='Interval between photos: ')
-    shutter_speed = forms.IntegerField(label='Shutter speed of camera')
     direction = forms.CharField(label='Direction (+ or =')
 
     def field_validation(self):
