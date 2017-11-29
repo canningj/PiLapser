@@ -35,12 +35,11 @@ def get_fields(request):
         if form.is_valid():
             # get all the fields that have been populated on the page and print them
             length = request.POST.get('length', '')
-            shutter_speed = request.POST.get('shutter_speed', '')
             total_images = request.POST.get('total_images', '')
             interval = request.POST.get('interval', '')
             direction = request.POST.get('direction', '')
 
-            runTimelapse(int(shutter_speed), int(interval), int(length), int(total_images), direction)
+            runTimelapse(int(interval), int(length), int(total_images), direction)
             return HttpResponse("Timelapse completed.")
 
 
