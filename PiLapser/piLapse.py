@@ -1,10 +1,10 @@
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 from time import sleep
 from subprocess import call
 
 # Initialize the GPIO pins and stepper coils for movement
-#GPIO.setmode(GPIO.BCM)
-#GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 
 enable_pin = 18
 coil_A_1_pin = 4
@@ -17,12 +17,12 @@ coilSeq2 = [0, 1, 1, 0]
 coilSeq3 = [0, 1, 0, 1]
 coilSeq4 = [1, 0, 0, 1]
 
-#GPIO.setup(enable_pin, GPIO.OUT)
-#GPIO.setup(coil_A_1_pin, GPIO.OUT)
-#GPIO.setup(coil_A_2_pin, GPIO.OUT)
-#GPIO.setup(coil_B_1_pin, GPIO.OUT)
-#GPIO.setup(coil_B_2_pin, GPIO.OUT)
-#GPIO.output(enable_pin, 1)
+GPIO.setup(enable_pin, GPIO.OUT)
+GPIO.setup(coil_A_1_pin, GPIO.OUT)
+GPIO.setup(coil_A_2_pin, GPIO.OUT)
+GPIO.setup(coil_B_1_pin, GPIO.OUT)
+GPIO.setup(coil_B_2_pin, GPIO.OUT)
+GPIO.output(enable_pin, 1)
 
 global status, cancel
 status = "Timelapse not started yet."

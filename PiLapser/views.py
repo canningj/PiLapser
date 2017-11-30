@@ -48,7 +48,7 @@ def get_fields(request):
             direction = request.POST.get('direction', '')
 
             sleep(10)
-            #runTimelapse(int(interval), int(length), int(total_images), direction)
+            runTimelapse(int(interval), int(length), int(total_images), direction)
             return HttpResponse("Timelapse completed.")
 
 
