@@ -78,34 +78,31 @@
           <h1 class="mt-5">New Timelapse</h1>
           <p class="lead">Configure a timelapse through the fields below!</p>
           <ul class="list-unstyled">
-              <li>Move the camera position back and forth using the buttons below.</li>
+              <li>Adjust the camera position</li>
             <li>
                 <button onclick="move_pos()" class="btn btn-primary">+</button>
                 <button onclick="move_neg()" class="btn btn-default">-</button>
             </li>
-              <br>
+              <hr>
               <form method="POST" oninput="output1.value=length.value">
                   {% csrf_token %}
                   <li>
                       <label for="total_images"># of photos: </label></li>
                     <li><input id="total_images" type="integer" name="total_images" value="{{ 0 }}">
                   </li>
-                  <br>
                   <li>
                       <label for="interval">Interval between photos: </label></li>
                       <li><input id="interval" type="integer" name="interval" value="{{ 0 }}">
                   </li>
-                  <br>
                   <li>
                       <label>Length of timelapse:</label></li>
                   <li><input type="range" class="slider" name="length" min="0" max="70" value="35" /></li>
                     <li><output name="output1" for="length">35</output>cm
                   </li>
-                  <br>
                   <li>
                       <label for="direction">+ or -: </label></li>
                       <li><input id="direction" type="char" name="direction" value="{{ '+' }}"></li>
-                  <br>
+
                   <li><button type="submit" class="btn btn-primary">Submit</button></li>
               </form>
           </ul>
