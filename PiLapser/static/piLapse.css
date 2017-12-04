@@ -3,6 +3,10 @@
     background-color: #4CAF50 !important;
 }
 
+li {
+    padding-top: 5px;
+}
+
 .slider {
     -webkit-appearance: none;  /* Needed this to override safari's default look */
     appearance: none;
