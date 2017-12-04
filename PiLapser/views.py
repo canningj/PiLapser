@@ -45,10 +45,9 @@ def get_fields(request):
             length = request.POST.get('length', '')
             total_images = request.POST.get('total_images', '')
             interval = request.POST.get('interval', '')
-            direction = request.POST.get('direction', '')
 
             sleep(10)
-            runTimelapse(int(interval), int(length), int(total_images), direction)
+            runTimelapse(int(interval), int(length), int(total_images))
             return render(request, 'completed.html')
 
 

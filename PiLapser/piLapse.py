@@ -61,18 +61,14 @@ def moveBackwards(steps):
         moveStepper(coilSeq1)
         sleep(0.009)
 
-
-def takePhoto(steps, direction):
-    call(["gphoto2", "--trigger-capture"])
-    sleep(1)
-    if (direction == '+'):
-        moveForwards(int(steps))
-    else:
-        moveBackwards(int(steps))
-
-def runTimelapse(interval, length, totalPhotos, direction):
+def runTimelapse(interval, length, totalPhotos):
     global status, cancel
     photosTaken = 0
+    if length < 0:
+        direction = "-"
+    else:
+        direction = "+"
+    length = abs(length)
     distance = length * 12
     steps = distance / (totalPhotos-1)
     status = "Timelapse initiated."
