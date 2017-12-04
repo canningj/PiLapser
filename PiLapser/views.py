@@ -49,7 +49,7 @@ def get_fields(request):
 
             sleep(10)
             runTimelapse(int(interval), int(length), int(total_images), direction)
-            return HttpResponse("Timelapse completed.")
+            return render(request, 'completed.html')
 
 
     # Otherwise, it is most likely a GET request so create the field.
