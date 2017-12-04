@@ -76,14 +76,13 @@
       <div class="row">
         <div class="col-lg-12 text-center">
           <h1 class="mt-5">New Timelapse</h1>
-          <p class="lead">Configure a timelapse through the fields below!</p>
+          <p class="lead">Configure your timelapse below.</p>
           <ul class="list-unstyled">
               <li>Adjust the camera position</li>
             <li>
                 <button onclick="move_pos()" class="btn btn-primary">+</button>
                 <button onclick="move_neg()" class="btn btn-default">-</button>
             </li>
-              <hr>
               <form method="POST" oninput="output1.value=length.value">
                   {% csrf_token %}
                   <li class="padding">
