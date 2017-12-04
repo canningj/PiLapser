@@ -86,20 +86,20 @@
               <hr>
               <form method="POST" oninput="output1.value=length.value">
                   {% csrf_token %}
-                  <li class="padded">
+                  <li class="padding">
                       <label for="total_images"># of photos: </label></li>
                     <li ><input id="total_images" type="integer" name="total_images" value="{{ 0 }}">
                   </li>
-                  <li class="padded">
+                  <li class="padding">
                       <label for="interval">Interval between photos: </label></li>
                       <li><input id="interval" type="integer" name="interval" value="{{ 0 }}">
                   </li>
-                  <li class="padded">
+                  <li class="padding">
                       <label>Amount of camera movement:</label></li>
                   <li><input type="range" class="slider" name="length" min="-70" max="70" value="0" /></li>
                     <li><output name="output1" for="length">0</output>cm
                   </li>
-                  <li class="padded"><button type="submit" class="btn btn-primary">Submit</button></li>
+                  <li class="padding"><button type="submit" class="btn btn-primary">Submit</button></li>
               </form>
           </ul>
         </div>
