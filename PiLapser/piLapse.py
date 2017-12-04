@@ -82,7 +82,7 @@ def runTimelapse(interval, length, totalPhotos, direction):
             return
         call(["gphoto2", "--trigger-capture"])
         photosTaken += 1
-        status = "Photos taken: %s, Photos Remaining: %s, Distance Moved: %s" % (i, (totalPhotos - i), (steps*(totalPhotos-i)))
+        status = "Photos taken: %s, Photos Remaining: %s, Distance Moved: %s" % (i, (totalPhotos - i), ((steps*i)/12))
         sleep(1)
         if (direction == '+'):
             moveForwards(int(steps))
@@ -101,5 +101,4 @@ def get_status():
 def cancel_lapse():
     global cancel
     cancel = True;
-    return cancel
 

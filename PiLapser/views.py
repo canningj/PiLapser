@@ -5,7 +5,6 @@ from .forms import timelapseFields
 from time import sleep
 
 from .piLapse import runTimelapse, moveForwards, moveBackwards, get_status, cancel_lapse
-from .piLapse import get_status
 
 @csrf_exempt
 def move_pos(request):
@@ -28,7 +27,7 @@ def move_neg(request):
     else:
         return render(request, 'piLapse.html')
 
-# Not sure if this will work or not.
+@csrf_exempt
 def cancel(request):
     if request.method == 'POST':
         cancel_lapse()
@@ -59,14 +58,18 @@ def get_fields(request):
 
     return render(request, 'piLapse.html', {'form': form})
 
+@csrf_exempt
 def status(request):
     return HttpResponse(str(get_status()))
 
+@csrf_exempt
 def render_status(request):
     return render(request, 'status.html')
 
+@csrf_exempt
 def completion(request):
     return render(request, 'completed.html')
 
+@csrf_exempt
 def camera_error(request):
     return render(request, 'camera_error.html')
