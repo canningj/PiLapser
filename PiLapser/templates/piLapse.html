@@ -15,7 +15,6 @@
         <link rel="stylesheet" href="{% static 'piLapse.css' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript" src="{% static 'piLapse.js' %}"></script>
-        <link href="bootstrap-switch.css" rel="stylesheet">
 
       <script type="text/javascript" src="{% static 'bootstrap.min.js' %}"></script>
       <script>
@@ -31,7 +30,7 @@
                     url: '/move_neg/'
                     });
                 }
-                $("[name='my-checkbox']").bootstrapSwitch();
+                $('.selectpicker').selectpicker();
         </script>
 
     <!-- Custom styles for this template -->
@@ -106,7 +105,7 @@
                   <br>
                   <li>
                       <label for="direction">Direction: </label></li>
-                  <li><select class="selectpicker" id="direction">
+                  <li><select class="selectpicker" id="direction" data-style="btn-primary">
                         <option>+</option>
                         <option>-</option>
                         </select>
