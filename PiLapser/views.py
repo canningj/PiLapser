@@ -18,6 +18,7 @@ def move_pos(request):
     else:
         return render(request, 'piLapse.html')
 
+@csrf_exempt
 def move_neg(request):
     if request.method == 'POST':
         print("got move_neg")
