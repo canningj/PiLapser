@@ -107,7 +107,11 @@
                   <li>
                       <label for="direction">+ or -: </label></li>
                       <li><input id="direction" type="char" name="direction" value="{{ '+' }}"></li>
-                  <li><input type="checkbox" name="dir" onText="+" offText="-"></li>
+                  <li><select class="selectpicker" id="dir">
+                        <option>+</option>
+                        <option>-</option>
+                        </select>
+                    </li>
                   <br>
                   <li><button type="submit" class="btn btn-primary">Submit</button></li>
               </form>
