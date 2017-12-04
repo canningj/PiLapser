@@ -30,7 +30,6 @@
                     url: '/move_neg/'
                     });
                 }
-                $('.selectpicker').selectpicker();
         </script>
 
     <!-- Custom styles for this template -->
@@ -104,12 +103,8 @@
                   </li>
                   <br>
                   <li>
-                      <label for="direction">Direction: </label></li>
-                  <li><select class="selectpicker" id="direction" data-style="btn-primary">
-                        <option>+</option>
-                        <option>-</option>
-                        </select>
-                    </li>
+                      <label for="direction">+ or -: </label></li>
+                      <li><input id="direction" type="char" name="direction" value="{{ '+' }}"></li>
                   <br>
                   <li><button type="submit" class="btn btn-primary">Submit</button></li>
               </form>
