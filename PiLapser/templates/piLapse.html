@@ -10,7 +10,6 @@
 
     <title>piLapser</title>
 
-    <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'piLapse.css' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -30,9 +29,9 @@
                     url: '/move_neg/'
                     });
                 }
+
         </script>
 
-    <!-- Custom styles for this template -->
     <style>
       body {
         padding-top: 54px;
@@ -42,14 +41,11 @@
           padding-top: 56px;
         }
       }
-
     </style>
-
   </head>
 
   <body>
 
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="/piLapse">piLapser</a>
@@ -71,7 +67,6 @@
       </div>
     </nav>
 
-    <!-- Page Content -->
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
@@ -79,25 +74,32 @@
           <p class="lead">Configure your timelapse below.</p>
           <ul class="list-unstyled">
               <li>Adjust the camera position</li>
-            <li>
+              <li>
                 <button onclick="move_pos()" class="btn btn-primary">+</button>
                 <button onclick="move_neg()" class="btn btn-default">-</button>
-            </li>
-              <form method="POST" oninput="output1.value=length.value">
+              </li>
+              <form name="createTimelapse" method="POST" oninput="output1.value=length.value" onsubmit="return validateForm()">
                   {% csrf_token %}
-                  <li class="padding">
-                      <label for="total_images"># of photos: </label></li>
-                    <li ><input id="total_images" type="integer" name="total_images" value="{{ 0 }}">
-                  </li>
-                  <li class="padding">
-                      <label for="interval">Interval between photos: </label></li>
-                      <li><input id="interval" type="integer" name="interval" value="{{ 0 }}">
-                  </li>
-                  <li class="padding">
-                      <label>Amount of camera movement:</label></li>
+
+                  <li class="padding"><label for="total_images"># of photos: </label></li>
+
+                  {% if form.errors.total_images %}
+                    <div class="error-text">{{ form.errors.total_images }}</div>
+                  {% endif %}
+                  <li><input id="total_images" type="integer" name="total_images" value="{{ 0 }}"></li>
+
+                  <li class="padding"><label for="interval">Interval between photos: </label></li>
+
+                  {% if form.errors.interval %}
+                    <div class="error-text">{{ form.errors.interval }}</div>
+                  {% endif %}
+                  <li><input id="interval" type="integer" name="interval" value="{{ 0 }}"></li>
+
+                  <li class="padding"><label>Amount of camera movement:</label></li>
+
                   <li><input type="range" class="slider" name="length" min="-70" max="70" value="0" /></li>
-                    <li><output name="output1" for="length">0</output>cm
-                  </li>
+                  <li><output name="output1" for="length">0</output>cm</li>
+
                   <li class="padding"><button type="submit" class="btn btn-primary">Submit</button></li>
               </form>
           </ul>

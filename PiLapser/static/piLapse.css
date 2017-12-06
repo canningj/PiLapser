@@ -7,6 +7,17 @@
     padding-top: 7px;
 }
 
+.errorlist {
+    list-style: none;
+}
+
+.error-text {
+    font-style: italic;
+    color: red;
+    text-align: center;
+}
+
+
 .slider {
     -webkit-appearance: none;  /* Needed this to override safari's default look */
     appearance: none;

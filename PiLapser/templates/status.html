@@ -11,13 +11,12 @@
 
     <title>Check Status</title>
 
-    <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'piLapse.css' %}">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript" src="{% static 'piLapse.js' %}"></script>
-      <script type="text/javascript" src="{% static 'bootstrap.min.js' %}"></script>
-      <script>
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'piLapse.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'piLapse.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap.min.js' %}"></script>
+    <script>
         function get_status()
         {
             $.ajax(
@@ -33,12 +32,13 @@
                 }
             });
         }
-        function cancel() {
+        function cancel()
+        {
             $.ajax(
-                {
+            {
                     type: "POST",
                     url: '/cancel/'
-                });
+            });
         }
     </script>
 
@@ -51,14 +51,11 @@
           padding-top: 56px;
         }
       }
-
     </style>
-
   </head>
 
   <body>
 
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="/piLapse">piLapser</a>
@@ -68,8 +65,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/piLapse">New Timelapse
-              </a>
+              <a class="nav-link" href="/piLapse">New Timelapse</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="#">Status</a>
@@ -81,7 +77,7 @@
       </div>
     </nav>
 
-    <!-- Page Content -->
+
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
@@ -90,12 +86,10 @@
           <ul class="list-unstyled">
               <li>
                 <input type="button" onClick="get_status()" value="Status of Timelapse" class="btn btn-primary"/>
-                  <br>
-              <li><p id="cur_status"></p></li>
+                <br>
+                <li><p id="cur_status"></p></li>
               </li>
-              <li>
-                  <button onclick="cancel()" class="btn btn-danger">Cancel</button>
-              </li>
+              <li><button onclick="cancel()" class="btn btn-danger">Cancel</button></li>
           </ul>
         </div>
       </div>
