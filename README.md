@@ -43,7 +43,7 @@ Run the server
 python3 manage.py runserver 0.0.0.0:8000\
 ```
 
-##Using the application
+### Using the application
 In order to access the application, connect the Pi to your local network and run ifconfig on the Pi in order to find the IP address of the machine.  Assuming the IP address of the Pi is 1.2.3.4, connect via the following address.
 ```
 http://1.2.3.4:8000/piLapse/
