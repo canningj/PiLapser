@@ -53,6 +53,7 @@ http://1.2.3.4:8000/piLapse/
 
 * [Django](https://www.djangoproject.com/) - The server framework used
 * [gphoto2](http://www.gphoto.org/) - Camera control library
+* [Raspberry Pi](https://www.raspberrypi.org/) - Hardware
 * [Bootstrap](https://getbootstrap.com/) - Front end styling
 
 
