@@ -14,7 +14,6 @@ What things you need to install the software and how to install them
 Python 3.6.0
 Django 1.8
 gphoto2
-
 ```
 
 ### Installing
@@ -60,6 +59,3 @@ http://1.2.3.4:8000/piLapse/
 ## Authors
 
 * **Jon Canning** - *Creator* - [canningj](https://github.com/canningj)
-
-
-}
