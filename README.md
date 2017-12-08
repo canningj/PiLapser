@@ -56,6 +56,9 @@ http://1.2.3.4:8000/piLapse/
 * [Raspberry Pi](https://www.raspberrypi.org/) - Hardware
 * [Bootstrap](https://getbootstrap.com/) - Front end styling
 
+## Check Out a Video of the Project
+[piLapser](https://www.youtube.com/watch?v=gZ29RxWC198) 
+
 
 ## Authors
 
